@@ -1,6 +1,5 @@
 const db = require("../models");
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 
 const register = async (req, res) => {
   try {
@@ -42,7 +41,7 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(req.body.password, foundUser.password);
     // check if the passwords match
     if (isMatch) {
-      // create a json web token and send response
+      //TODO create a json web token and send response
     } else {
       // the password provided does not match the password on file.
       return res.status(400).json({
