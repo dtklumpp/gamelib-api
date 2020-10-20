@@ -2,7 +2,7 @@
 const express = require('express');
 const routes = require('./routes');
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 3001;
 const app = express();
 
 // middleware - JSON parsing
