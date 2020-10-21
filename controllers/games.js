@@ -24,7 +24,7 @@ const create = (req, res) => {
     db.Game.create(req.body, (err, savedGame) => {
         if (err) console.log('Error in games#create:', err);
 
-        res.send("Incomplete games#create controller function");
+        res.status(201).json({ "game": savedGame });
     });
 };
 
@@ -32,7 +32,9 @@ const update = (req, res) => {
     db.Game.findByIdAndUpdate(req.params.id, req.body, {new: true}, (err, updatedGame) => {
         if (err) console.log('Error in games#update:', err);
 
-        res.send("Incomplete games#update controller function");
+        if(!updatedGame) return res.status(200).json({ "message": "No game with that id found in db" });
+
+        res.status(200).json({ "game": updatedGame });
     });
 };
 
@@ -40,7 +42,9 @@ const destroy = (req, res) => {
     db.Game.findByIdAndDelete(req.params.id, (err, deletedGame) => {
         if (err) console.log('Error in games#destroy:', err);
 
-        res.send("Incomplete games#destroy controller function");
+        if(!deletedGame) return res.status(200).json({ "message": "No game with that id found in db" });
+
+        res.status(200).json({ "game": deletedGame });
     });
 };
 
