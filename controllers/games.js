@@ -4,7 +4,9 @@ const index = (req, res) => {
     db.Game.find({}, (err, foundGames) => {
         if (err) console.log('Error in games#index:', err);
 
-        res.send("Incomplete games#index controller function");
+        if(!foundGames.length) return res.status(200).json({ "message": "No games found in db" });
+
+        res.status(200).json({ "games": foundGames });
     });
 };
 
@@ -12,7 +14,9 @@ const show = (req, res) => {
     db.Game.findById(req.params.id, (err, foundGame) => {
         if (err) console.log('Error in games#show:', err);
 
-        res.send("Incomplete games#show controller function");
+        if(!foundGame) return res.status(200).json({ "message": "No game with that id found in db" });
+
+        res.status(200).json({ "game": foundGame });
     });
 };
 
