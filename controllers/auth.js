@@ -49,17 +49,7 @@ const login = async (req, res) => {
     const isMatch = await bcrypt.compare(req.body.password, foundUser.password);
 
     if (isMatch) {
-      // create a json web token
-      const signedJwt = await jwt.sign(
-        {
-          _id: foundUser._id,
-        },
-        "super_secret_key",
-        {
-          // its good practice to have an expiration amount for jwt tokens.
-          expiresIn: "1h",
-        }
-      );
+      //TODO create a json web token
 
       return res.status(200).json({
         status: 200,
